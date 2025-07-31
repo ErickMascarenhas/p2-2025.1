@@ -21,5 +21,6 @@ public class Main{
         System.out.print("\nDiga quantos produtos deseja remover do estoque: ");
         produto.RemoveProducts(input.nextInt()); // remover x quantidade de produtos
         System.out.printf("\nDados atualizados: %s\n", produto.Text());
+        input.close();
     }
 }
