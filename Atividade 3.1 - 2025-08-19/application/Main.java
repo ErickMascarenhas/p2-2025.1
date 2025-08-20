@@ -1,5 +1,6 @@
 package application;
 
+import Entities.Exceptions;
 import Entities.Reserva;
 import java.util.Scanner;
 import java.util.Date;
@@ -28,12 +29,7 @@ public class Main{
         Reserva diaria = new Reserva(numero, chegada, saida);
 
         boolean continuar = false;
-        if (diaria.duracao() < 1) System.out.println("Erro na reserva: Data de check-out deve ser depois da data de check-in");
-        else if (chegada.before(atual) || saida.before(atual)) System.out.println("Erro na reserva: Datas de reserva devem ser de datas futuras");
-        else{
-            System.out.println("Reserva: Sala " + numero + ", Check-in: " + data1 + ", Check-out: " + data2 + ", " + diaria.duracao() + " noites");
-            continuar = true;
-        }
+        if (Exceptions.primeiro(diaria, atual, data1, data2, chegada, saida).equals("OK")) continuar = true;
 
         if (continuar){
             System.out.println("\nPreencha os dados para atualizar a reserva:");
@@ -50,9 +46,7 @@ public class Main{
             diaria.setChegada(chegada);
             diaria.setSaida(saida);
 
-            if (diaria.duracao() < 1) System.out.println("Erro na reserva: Data de check-out deve ser depois da data de check-in");
-            else if (chegada.before(atual) || saida.before(atual)) System.out.println("Erro na reserva: Datas de reserva para atualizacao devem ser de datas futuras");
-            else System.out.println("Reserva: Sala " + numero + ", Check-in: " + data1 + ", Check-out: " + data2 + ", " + diaria.duracao() + " noites");
+            Exceptions.primeiro(diaria, atual, data1, data2, chegada, saida);
         }
         input.close();
     }

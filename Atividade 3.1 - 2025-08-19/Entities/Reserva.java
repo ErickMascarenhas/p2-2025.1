@@ -4,9 +4,9 @@ import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 public class Reserva{
-    int numero;
-    Date chegada;
-    Date saida;
+    private int numero;
+    private Date chegada;
+    private Date saida;
 
     public Reserva(int numero, Date chegada, Date saida) {
         this.numero = numero;
